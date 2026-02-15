@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 # Install PDO MySQL and ensure Apache loads only ONE MPM (prefork)
 RUN docker-php-ext-install pdo pdo_mysql \
-  && a2dismod mpm_event || true \
+  && a2dismod mpm_event mpm_worker || true \
   && a2enmod mpm_prefork rewrite
 
 COPY app_shipping/ /var/www/html/app_shipping/
