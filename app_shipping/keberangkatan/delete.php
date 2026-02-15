@@ -1,0 +1,13 @@
+<?php
+require_once __DIR__ . '/../includes/auth.php';
+checkRole(['admin', 'petugas']);
+require_once __DIR__ . '/../config/database.php';
+
+$id = (int)($_GET['id'] ?? 0);
+
+$stmt = $pdo->prepare("DELETE FROM keberangkatan WHERE id = ?");
+$stmt->execute([$id]);
+
+setFlash('success', 'Data keberangkatan berhasil dihapus.');
+header('Location: /app_shipping/keberangkatan/index.php');
+exit;
