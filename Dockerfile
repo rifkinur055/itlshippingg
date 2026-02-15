@@ -6,6 +6,7 @@ RUN docker-php-ext-install pdo pdo_mysql \
   && a2enmod mpm_prefork rewrite
 
 COPY app_shipping/ /var/www/html/app_shipping/
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Optional: redirect root to app
 RUN printf '%s\n' \
@@ -13,3 +14,5 @@ RUN printf '%s\n' \
   > /var/www/html/index.php
 
 RUN chown -R www-data:www-data /var/www/html
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
