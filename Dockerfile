@@ -15,4 +15,5 @@ RUN printf '%s\n' \
 
 RUN chown -R www-data:www-data /var/www/html
 
+USER root
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
